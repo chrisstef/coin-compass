@@ -1,7 +1,13 @@
 import React from "react";
+import CoinDetails from "@/components/CoinDetails";
 
-const page = () => {
-    return <div>Coin Details!</div>;
-};
+export default function DetailsPage({ params }) {
+    const { id } = params;
 
-export default page;
+    return (
+        <main className="flex flex-col items-center justify-between p-24">
+            <h1 className="text-4xl font-bold mb-10">Coin Details</h1>
+            <CoinDetails id={id} />
+        </main>
+    );
+}
