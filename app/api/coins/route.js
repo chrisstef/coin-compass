@@ -12,8 +12,6 @@ export async function GET(request) {
             throw new Error("Invalid page parameter");
         }
 
-        page = Number(page); // Convert string to number
-
         console.log("Requested Page:", page);
         const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${perPage}&page=${page}&sparkline=false&x_cg_demo_api_key=${apiKey}`;
         console.log("API URL:", url);
@@ -28,6 +26,7 @@ export async function GET(request) {
 
         const data = await response.json();
         const formattedData = data.map((coin) => ({
+            id: coin.id,
             name: coin.name,
             symbol: coin.symbol,
             image: coin.image,
