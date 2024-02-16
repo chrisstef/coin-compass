@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 
+const apiKey = process.env.NEXT_PUBLIC_COINGECKO_API_KEY;
+
 export async function GET(request) {
     try {
         const perPage = 20;
@@ -13,7 +15,7 @@ export async function GET(request) {
         page = Number(page); // Convert string to number
 
         console.log("Requested Page:", page);
-        const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${perPage}&page=${page}&sparkline=false`;
+        const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${perPage}&page=${page}&sparkline=false&x_cg_demo_api_key=${apiKey}`;
         console.log("API URL:", url);
 
         const response = await fetch(url);

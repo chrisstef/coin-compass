@@ -1,16 +1,31 @@
 "use client";
 
-import useCoins from "@/hooks/useCoins";
+import { useEffect } from "react";
+import { useInView } from "react-intersection-observer";
+import Spinner from "./Spinner";
+import useFetchCoins from "@/hooks/useFetchCoins";
 
-const Coins = () => {
-    const { coins, loading } = useCoins();
+const CoinsList = () => {
+    const { coins, fetchCoins } = useFetchCoins();
+
+    const { ref, inView } = useInView();
+
+    useEffect(() => {
+        if (inView) {
+            fetchCoins();
+        }
+    }, [inView]);
 
     return (
-        <main className="flex min-h-screen flex-col items-center justify-between p-24">
-            <h1 className="text-4xl font-bold mb-8">Top Coins</h1>
+        <>
             <ul>
-                {coins.map((coin, index) => (
+                {coins?.map((coin, index) => (
                     <li key={index} className="mb-4">
+                        <img
+                            className="w-10 h-10"
+                            src={coin.image}
+                            alt={coin.name}
+                        />
                         <h2 className="text-xl font-semibold">
                             {coin.name} ({coin.symbol.toUpperCase()})
                         </h2>
@@ -30,9 +45,14 @@ const Coins = () => {
                     </li>
                 ))}
             </ul>
-            {loading && <p>Loading...</p>}
-        </main>
+            <div
+                className="flex justify-center items-center p-4 col-span-1 sm:col-span-2 md:col-span-3"
+                ref={ref}
+            >
+                <Spinner />
+            </div>
+        </>
     );
 };
 
-export default Coins;
+export default CoinsList;
