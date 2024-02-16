@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 export async function GET(request) {
     try {
-        const perPage = 10;
+        const perPage = 20;
         let page = request.nextUrl.searchParams.get("page");
 
         // Input validation
