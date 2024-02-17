@@ -15,7 +15,7 @@ const CoinDetails = ({ id }) => {
                     title="Current Price"
                     value={
                         coinDetails.current_price !== undefined ? (
-                            coinDetails.current_price
+                            coinDetails.current_price.toLocaleString()
                         ) : (
                             <Skeleton className="h-[32px] w-[65px]" />
                         )
@@ -27,7 +27,7 @@ const CoinDetails = ({ id }) => {
                     title="24h High"
                     value={
                         coinDetails.high_24h !== undefined ? (
-                            coinDetails.high_24h
+                            coinDetails.high_24h.toLocaleString()
                         ) : (
                             <Skeleton className="h-[32px] w-[65px]" />
                         )
@@ -38,7 +38,7 @@ const CoinDetails = ({ id }) => {
                     title="24h Low"
                     value={
                         coinDetails.low_24h !== undefined ? (
-                            coinDetails.low_24h
+                            coinDetails.low_24h.toLocaleString()
                         ) : (
                             <Skeleton className="h-[32px] w-[65px]" />
                         )
@@ -53,7 +53,17 @@ const CoinDetails = ({ id }) => {
                     value={
                         coinDetails.price_change_percentage_24h !==
                         undefined ? (
-                            millify(coinDetails.price_change_percentage_24h)
+                            <span
+                                className={
+                                    coinDetails.price_change_percentage_24h > 0
+                                        ? "text-green-500"
+                                        : "text-red-500"
+                                }
+                            >
+                                {millify(
+                                    coinDetails.price_change_percentage_24h
+                                )}
+                            </span>
                         ) : (
                             <Skeleton className="h-[32px] w-[65px]" />
                         )
@@ -64,7 +74,17 @@ const CoinDetails = ({ id }) => {
                     title="7 days"
                     value={
                         coinDetails.price_change_percentage_7d !== undefined ? (
-                            millify(coinDetails.price_change_percentage_7d)
+                            <span
+                                className={
+                                    coinDetails.price_change_percentage_7d > 0
+                                        ? "text-green-500"
+                                        : "text-red-500"
+                                }
+                            >
+                                {millify(
+                                    coinDetails.price_change_percentage_7d
+                                )}
+                            </span>
                         ) : (
                             <Skeleton className="h-[32px] w-[65px]" />
                         )
@@ -76,7 +96,17 @@ const CoinDetails = ({ id }) => {
                     value={
                         coinDetails.price_change_percentage_14d !==
                         undefined ? (
-                            millify(coinDetails.price_change_percentage_14d)
+                            <span
+                                className={
+                                    coinDetails.price_change_percentage_14d > 0
+                                        ? "text-green-500"
+                                        : "text-red-500"
+                                }
+                            >
+                                {millify(
+                                    coinDetails.price_change_percentage_14d
+                                )}
+                            </span>
                         ) : (
                             <Skeleton className="h-[32px] w-[65px]" />
                         )
@@ -88,7 +118,17 @@ const CoinDetails = ({ id }) => {
                     value={
                         coinDetails.price_change_percentage_30d !==
                         undefined ? (
-                            millify(coinDetails.price_change_percentage_30d)
+                            <span
+                                className={
+                                    coinDetails.price_change_percentage_30d > 0
+                                        ? "text-green-500"
+                                        : "text-red-500"
+                                }
+                            >
+                                {millify(
+                                    coinDetails.price_change_percentage_30d
+                                )}
+                            </span>
                         ) : (
                             <Skeleton className="h-[32px] w-[65px]" />
                         )
@@ -100,7 +140,17 @@ const CoinDetails = ({ id }) => {
                     value={
                         coinDetails.price_change_percentage_60d !==
                         undefined ? (
-                            millify(coinDetails.price_change_percentage_60d)
+                            <span
+                                className={
+                                    coinDetails.price_change_percentage_60d > 0
+                                        ? "text-green-500"
+                                        : "text-red-500"
+                                }
+                            >
+                                {millify(
+                                    coinDetails.price_change_percentage_60d
+                                )}
+                            </span>
                         ) : (
                             <Skeleton className="h-[32px] w-[65px]" />
                         )
@@ -112,7 +162,17 @@ const CoinDetails = ({ id }) => {
                     value={
                         coinDetails.price_change_percentage_200d !==
                         undefined ? (
-                            millify(coinDetails.price_change_percentage_200d)
+                            <span
+                                className={
+                                    coinDetails.price_change_percentage_200d > 0
+                                        ? "text-green-500"
+                                        : "text-red-500"
+                                }
+                            >
+                                {millify(
+                                    coinDetails.price_change_percentage_200d
+                                )}
+                            </span>
                         ) : (
                             <Skeleton className="h-[32px] w-[65px]" />
                         )
@@ -123,7 +183,17 @@ const CoinDetails = ({ id }) => {
                     title="1 year"
                     value={
                         coinDetails.price_change_percentage_1y !== undefined ? (
-                            millify(coinDetails.price_change_percentage_1y)
+                            <span
+                                className={
+                                    coinDetails.price_change_percentage_1y > 0
+                                        ? "text-green-500"
+                                        : "text-red-500"
+                                }
+                            >
+                                {millify(
+                                    coinDetails.price_change_percentage_1y
+                                )}
+                            </span>
                         ) : (
                             <Skeleton className="h-[32px] w-[65px]" />
                         )
