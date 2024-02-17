@@ -4,17 +4,15 @@ const apiKey = process.env.NEXT_PUBLIC_COINGECKO_API_KEY;
 
 export async function GET(request) {
     try {
-        let pathname = request.nextUrl.pathname; // Get pathname fro client
-        let parts = pathname.split("/"); // Split the string by the '/' character
-        let id = parts[parts.length - 1]; // Get the last element of the array
+        let pathname = request.nextUrl.pathname;
+        let parts = pathname.split("/");
+        let id = parts[parts.length - 1];
         const url = `https://api.coingecko.com/api/v3/coins/${id}?x_cg_demo_api_key=${apiKey}`;
         console.log("API URL:", url);
 
         const response = await fetch(url);
         if (!response.ok) {
-            return NextResponse.json(
-                { error: "Failed to fetch coin data" },
-                { status: response.status }
+            return NextResponse.json({ error: "Failed to fetch coin data" },{ status: response.status }
             );
         }
 

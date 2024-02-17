@@ -1,10 +1,20 @@
 "use client";
 
 import { useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { useInView } from "react-intersection-observer";
 import Spinner from "./Spinner";
 import useFetchCoins from "@/hooks/useFetchCoins";
+
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from "@/components/ui/table";
 
 const CoinsList = () => {
     const { coins, fetchCoins } = useFetchCoins();
@@ -18,44 +28,53 @@ const CoinsList = () => {
     }, [inView]);
 
     return (
-        <>
-            <ul>
-                {coins?.map((coin, index) => (
-                    <li key={index} className="mb-4">
-                        <Link href={`/${coin.id}`}>
-                            <img
-                                className="w-10 h-10"
-                                src={coin.image}
-                                alt={coin.name}
-                            />
-                            <h2 className="text-xl font-semibold">
-                                {coin.name} ({coin.symbol.toUpperCase()})
-                            </h2>
-                            <p className="text-gray-600">#{index + 1}</p>
-                            <p className="text-gray-600">
-                                Current Price: ${coin.current_price}
-                            </p>
-                            <p className="text-gray-600">
-                                24h High: ${coin.high_24h}
-                            </p>
-                            <p className="text-gray-600">
-                                24h Low: ${coin.low_24h}
-                            </p>
-                            <p className="text-gray-600">
-                                Price Change (24h):{" "}
-                                {coin.price_change_percentage_24h}%
-                            </p>
-                        </Link>
-                    </li>
-                ))}
-            </ul>
-            <div
-                className="flex justify-center items-center p-4 col-span-1 sm:col-span-2 md:col-span-3"
-                ref={ref}
-            >
+        <div className="w-full overflow-x-auto">
+            <div className="rounded-md border">
+                <Table className="text-left text-sm font-light">
+                    <TableHeader className="bg-secondary">
+                        <TableRow>
+                            <TableHead className="px-6 py-4">#</TableHead>
+                            <TableHead className="px-6 py-4"></TableHead>
+                            <TableHead className="px-6 py-4">Name</TableHead>
+                            <TableHead className="px-10 py-4">Price</TableHead>
+                            <TableHead className="px-10 py-4">24h High</TableHead>
+                            <TableHead className="px-10 py-4">24h Low</TableHead>
+                            <TableHead className="px-6 py-4">Price Change (24h)</TableHead>
+                        </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                        {coins?.map((coin, index) => (
+                            <TableRow key={index}>
+                                <TableCell className="px-6 py-4">{index + 1}</TableCell>
+                                <TableCell className="px-6 py-4">
+                                    <Image
+                                        src={coin.image || alt}
+                                        alt={coin.name}
+                                        width={30}
+                                        height={30}
+                                    />
+                                </TableCell>
+                                <TableCell className="px-6 py-4 font-normal">
+                                    <Link href={`${coin.id}`}>
+                                        {coin.name}{" "}
+                                        <span className="text-neutral-500">
+                                            {coin.symbol.toUpperCase()}
+                                        </span>
+                                    </Link>
+                                </TableCell>
+                                <TableCell className="px-10 py-4">${coin.current_price}</TableCell>
+                                <TableCell className="px-10 py-4">${coin.high_24h}</TableCell>
+                                <TableCell className="px-10 py-4">${coin.low_24h}</TableCell>
+                                <TableCell className="px-6 py-4">{coin.price_change_percentage_24h.toFixed(2)}%</TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </div>
+            <div className="flex justify-center items-center p-4 col-span-1 sm:col-span-2 md:col-span-3"ref={ref}>
                 <Spinner />
             </div>
-        </>
+        </div>
     );
 };
 
