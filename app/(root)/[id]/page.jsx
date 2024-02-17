@@ -10,7 +10,7 @@ const DetailsPage = ({ params }) => {
     return (
         <Shell>
             <HeaderText subtext="Price shifts through percentage adjustments.">
-                Overview
+                {id.charAt(0).toUpperCase() + id.slice(1)} overview
             </HeaderText>
             <CoinDetails id={id} />
             <DescriptionCard id={id} />

@@ -6,7 +6,7 @@ const HomePage = () => {
     return (
         <Shell>
             <HeaderText subtext="High quality price data on the top coins.">
-                Coin Compass
+                Cryptocurrency Insights
             </HeaderText>
             <CoinsList />
         </Shell>

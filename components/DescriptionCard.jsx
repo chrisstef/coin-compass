@@ -16,7 +16,14 @@ const DescriptionCard = ({ id }) => {
         <Card className="w-full">
             <CardHeader>
                 <CardTitle>What is {coinDetails.name}?</CardTitle>
-                <CardDescription>{coinDetails.description}</CardDescription>
+                {coinDetails.description ? (
+                    <CardDescription>{coinDetails.description}</CardDescription>
+                ) : (
+                    <CardDescription>
+                        Oops! It seems there's no description available for{" "}
+                        {coinDetails.name} at the moment. Check back later!
+                    </CardDescription>
+                )}{" "}
             </CardHeader>
         </Card>
     );

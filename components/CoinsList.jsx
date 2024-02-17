@@ -18,7 +18,7 @@ import {
 
 const CoinsList = () => {
     const { coins, fetchCoins } = useFetchCoins();
-    
+
     const { ref, inView } = useInView();
 
     useEffect(() => {
@@ -72,19 +72,27 @@ const CoinsList = () => {
                                     </Link>
                                 </TableCell>
                                 <TableCell className="px-10 py-4">
-                                    ${coin.current_price}
+                                    ${coin.current_price.toLocaleString()}
                                 </TableCell>
                                 <TableCell className="px-10 py-4">
-                                    ${coin.high_24h}
+                                    ${coin.high_24h.toLocaleString()}
                                 </TableCell>
                                 <TableCell className="px-10 py-4">
-                                    ${coin.low_24h}
+                                    ${coin.low_24h.toLocaleString()}
                                 </TableCell>
                                 <TableCell className="px-6 py-4">
-                                    {coin.price_change_percentage_24h.toFixed(
-                                        2
-                                    )}
-                                    %
+                                    <span
+                                        className={
+                                            coin.price_change_percentage_24h > 0
+                                                ? "text-green-500"
+                                                : "text-red-500"
+                                        }
+                                    >
+                                        {coin.price_change_percentage_24h.toFixed(
+                                            2
+                                        )}
+                                        %
+                                    </span>
                                 </TableCell>
                             </TableRow>
                         ))}
