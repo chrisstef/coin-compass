@@ -7,7 +7,6 @@ export async function GET(request) {
         const perPage = 20;
         let page = request.nextUrl.searchParams.get("page");
 
-        // Input validation
         if (typeof page !== "string" || !Number.isInteger(Number(page))) {
             throw new Error("Invalid page parameter");
         }
@@ -18,9 +17,7 @@ export async function GET(request) {
 
         const response = await fetch(url);
         if (!response.ok) {
-            return NextResponse.json(
-                { error: "Failed to fetch coin data" },
-                { status: response.status }
+            return NextResponse.json({ error: "Failed to fetch coin data" }, { status: response.status }
             );
         }
 
@@ -37,6 +34,6 @@ export async function GET(request) {
         }));
         return NextResponse.json(formattedData, { status: 200 });
     } catch (error) {
-        return NextResponse.json({ error: error.message }, { status: 500 });
+        return NextResponse.json({ error: error.message }, { status: response.status });
     }
 }
