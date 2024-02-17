@@ -1,10 +1,13 @@
 import CoinsList from "@/components/CoinsList";
 import Shell from "@/components/Shell";
+import HeaderText from "@/components/HeaderText";
 
 const HomePage = () => {
     return (
         <Shell>
-            <h1 className="text-2xl font-bold md:text-3xl mb-10">Top Coins</h1>
+            <HeaderText subtext="High quality price data on the top coins.">
+                Coin Compass
+            </HeaderText>
             <CoinsList />
         </Shell>
     );
