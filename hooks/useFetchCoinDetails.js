@@ -10,6 +10,7 @@ const useFetchCoinDetails = (id) => {
     useEffect(() => {
         const fetchCoinDetails = async () => {
             setIsLoading(true);
+
             try {
                 const response = await fetch(`/api/coins/${id}`);
                 if (!response.ok) {
@@ -27,7 +28,7 @@ const useFetchCoinDetails = (id) => {
         fetchCoinDetails();
     }, [id]);
 
-    return { coinDetails, isLoading };
+    return { coinDetails, isLoading, error };
 };
 
 export default useFetchCoinDetails;
