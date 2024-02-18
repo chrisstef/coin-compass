@@ -1,13 +1,10 @@
 "use client";
 
 import millify from "millify";
-import useFetchCoinDetails from "@/hooks/useFetchCoinDetails";
 import DetailsCard from "./DetailsCard";
 import { Skeleton } from "./ui/skeleton";
 
-const CoinDetails = ({ id }) => {
-    const { coinDetails } = useFetchCoinDetails(id);
-
+export const CoinDetailsCards = ({ coinDetails }) => {
     return (
         <>
             <div className="w-full grid gap-4 grid-cols-1 lg:grid-cols-3">
@@ -205,4 +202,4 @@ const CoinDetails = ({ id }) => {
     );
 };
 
-export default CoinDetails;
+export default CoinDetailsCards;

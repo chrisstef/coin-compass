@@ -1,6 +1,6 @@
 export const Footer = () => {
     return (
-        <footer className="text-center lg:text-left right-0 left-0 bottom-0">
+        <footer className="text-center">
             <div className="p-4 text-center">
                 Powered by
                 <a
