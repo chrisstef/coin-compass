@@ -65,8 +65,11 @@ export const CoinsList = () => {
                                 </TableCell>
                                 <TableCell className="px-6 py-4 font-normal">
                                     <Link href={`${coin.id}`}>
-                                        {coin.name}{" "}
+                                        <span className="hover:underline">
+                                            {coin.name}
+                                        </span>
                                         <span className="text-neutral-500">
+                                            {" "}
                                             {coin.symbol.toUpperCase()}
                                         </span>
                                     </Link>
