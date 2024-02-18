@@ -16,7 +16,7 @@ import {
     TableRow,
 } from "@/components/ui/table";
 
-const CoinsList = () => {
+export const CoinsList = () => {
     const { coins, fetchCoins } = useFetchCoins();
 
     const { ref, inView } = useInView();
@@ -29,7 +29,7 @@ const CoinsList = () => {
 
     return (
         <div className="w-full overflow-x-auto">
-            <div className="rounded-md border">
+            <div className="rounded-md border shadow-sm">
                 <Table className="text-left text-sm font-light">
                     <TableHeader>
                         <TableRow>

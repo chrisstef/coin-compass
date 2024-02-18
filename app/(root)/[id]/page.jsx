@@ -1,19 +1,33 @@
 import React from "react";
-import CoinDetails from "@/components/CoinDetails";
+import CoinDetailsCards from "@/components/CoinDetailsCards";
 import Shell from "@/components/Shell";
 import DescriptionCard from "@/components/DescriptionCard";
 import HeaderText from "@/components/HeaderText";
+import { notFound } from "next/navigation";
 
-const DetailsPage = ({ params }) => {
+const DetailsPage = async ({ params }) => {
     const { id } = params;
+
+    if (!id) {
+        notFound();
+    }
+
+    const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/coins/${id}`
+    );
+    const coinDetails = await res.json();
+
+    if (!coinDetails || res.status === 404) {
+        return notFound();
+    }
 
     return (
         <Shell>
             <HeaderText subtext="Price shifts through percentage adjustments.">
                 {id.charAt(0).toUpperCase() + id.slice(1)} overview
             </HeaderText>
-            <CoinDetails id={id} />
-            <DescriptionCard id={id} />
+            <CoinDetailsCards coinDetails={coinDetails} />
+            <DescriptionCard coinDetails={coinDetails} />
         </Shell>
     );
 };
