@@ -2,7 +2,7 @@
 
 ## Overview
 
-Coin Compass is a cryptocurrency price aggregator using Next.js 14 and the CoinGecko API.
+Coin Compass is a cryptocurrency price aggregator using Next.js 14 and CoinGecko API.
 
 ## Tech Stack
 
@@ -10,7 +10,7 @@ Coin Compass is a cryptocurrency price aggregator using Next.js 14 and the CoinG
 
 -   **Tailwind CSS:** Utility-first CSS framework to style components and pages efficiently.
 
--   **CoinGecko API:** Making use of CoinGecko API to access endpoint required for the price tracking.
+-   **CoinGecko API:** Making use of CoinGecko API to access endpoint required for price tracking.
 
 ## Features
 
@@ -26,7 +26,7 @@ Make sure you have `Node.js` and `npm/yarn` installed on your machine.
 
 ### Installation
 
-To get started with GHO Lens, follow these steps:
+To get started, follow these steps:
 
 1. Clone the repository:
 
@@ -67,13 +67,13 @@ cp .env.example .env.local
 3. Replace the placeholders with actual values for your environment variables:
 
 ```bash
-NEXT_PUBLIC_COINGECKO_API_KEY=''
+NEXT_PUBLIC_COINGECKO_API_KEY=api_key_goes_here
 NEXT_PUBLIC_BASE_URL=http://localhost:3000
 ```
 
 ### ⚠️ Important!
 
-In order to run the app, you need the [CoinGecko API](https://www.coingecko.com/en/api) (free of charge).
+In order to run the app, you need the [CoinGecko API](https://www.coingecko.com/en/api) key (free).
 
 ### Starting the application
 

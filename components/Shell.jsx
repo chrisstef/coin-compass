@@ -4,7 +4,7 @@ const Shell = ({ children, className, ...props }) => {
     return (
         <div
             className={cn(
-                "flex flex-col justify-center p-16 items-center gap-8",
+                "flex flex-col justify-center p-16 items-center gap-12",
                 className
             )}
             {...props}
