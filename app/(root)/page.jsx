@@ -5,7 +5,7 @@ import HeaderText from "@/components/HeaderText";
 const HomePage = () => {
     return (
         <Shell>
-            <HeaderText subtext="High quality price data on the top coins.">
+            <HeaderText subtext="Top-tier price data for leading cryptocurrencies">
                 Cryptocurrency Insights
             </HeaderText>
             <CoinsTable />

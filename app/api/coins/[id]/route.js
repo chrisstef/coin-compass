@@ -22,6 +22,7 @@ function extractRequiredFields(coin) {
 }
 
 export async function GET(request) {
+    let response;
     try {
         const pathname = request.nextUrl.pathname;
         const parts = pathname.split("/");
@@ -29,7 +30,7 @@ export async function GET(request) {
 
         const url = `https://api.coingecko.com/api/v3/coins/${id}?x_cg_demo_api_key=${apiKey}`;
 
-        const response = await fetch(url);
+        response = await fetch(url);
         if (!response.ok) {
             return NextResponse.json({ error: "Failed to fetch coin data" },{ status: response.status });
         }
@@ -38,6 +39,10 @@ export async function GET(request) {
         const formattedData = extractRequiredFields(data);
         return NextResponse.json(formattedData, { status: 200 });
     } catch (error) {
-        return NextResponse.json({ error: error.message }, { status: 500 });
+        let status =  500;
+        if (response && typeof response.status === 'number') {
+            status = response.status;
+        }
+        return NextResponse.json({ error: error.message }, { status });
     }
 }
