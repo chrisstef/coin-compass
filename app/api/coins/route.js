@@ -1,19 +1,7 @@
 import { NextResponse } from "next/server";
+import { extractCoinFields } from "@/lib/coinUtils";
 
 const apiKey = process.env.NEXT_PUBLIC_COINGECKO_API_KEY;
-
-function extractRequiredFields(coin) {
-    return {
-        id: coin.id,
-        name: coin.name,
-        symbol: coin.symbol,
-        image: coin.image,
-        current_price: coin.current_price,
-        high_24h: coin.high_24h,
-        low_24h: coin.low_24h,
-        price_change_percentage_24h: coin.price_change_percentage_24h,
-    };
-}
 
 export async function GET(request) {
     let response;
@@ -36,9 +24,10 @@ export async function GET(request) {
         }
 
         const data = await response.json();
-        const formattedData = data.map(extractRequiredFields);
+        const formattedData = data.map(extractCoinFields);
 
         return NextResponse.json(formattedData, { status: 200 });
+        
     } catch (error) {
         let status = 500;
         if (response && typeof response.status === "number") {
