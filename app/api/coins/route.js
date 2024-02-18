@@ -16,6 +16,7 @@ function extractRequiredFields(coin) {
 }
 
 export async function GET(request) {
+    let response;
     try {
         const perPage = 20;
         const page = request.nextUrl.searchParams.get("page");
@@ -26,9 +27,11 @@ export async function GET(request) {
 
         const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${perPage}&page=${page}&sparkline=false&x_cg_demo_api_key=${apiKey}`;
 
-        const response = await fetch(url);
+        response = await fetch(url);
         if (!response.ok) {
-            return NextResponse.json({ error: "Failed to fetch coin data" }, { status: response.status }
+            return NextResponse.json(
+                { error: "Failed to fetch coin data" },
+                { status: response.status }
             );
         }
 
@@ -37,6 +40,10 @@ export async function GET(request) {
 
         return NextResponse.json(formattedData, { status: 200 });
     } catch (error) {
-        return NextResponse.json({ error: error.message }, { status: response.status });
+        let status = 500;
+        if (response && typeof response.status === "number") {
+            status = response.status;
+        }
+        return NextResponse.json({ error: error.message }, { status });
     }
 }
