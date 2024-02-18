@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Icons } from "@/components/icons";
+import { Icons } from "@/components/Icons";
 
 const DetailsCard = ({ title, value, unit }) => {
     return (
