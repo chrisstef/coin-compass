@@ -54,7 +54,7 @@ yarn
 
 ### Configuration
 
-Before running the application, it's important to configure your environment variables. Follow these steps:
+Before running the application, you have to configure your environment variables. Follow these steps:
 
 1. Create a `.env.local` file in the root of the project.
 
